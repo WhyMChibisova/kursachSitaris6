@@ -1,7 +1,7 @@
 package com.example.kursach.controllers;
 
 import com.example.kursach.models.Course;
-import com.example.kursach.repositories.CourseRepository;
+import com.example.kursach.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,19 +10,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
 @Controller
 public class CourseController {
     @Autowired
-    private CourseRepository courseRepository;
+    private CourseService courseService;
 
     @GetMapping("/courses")
     public String allCourses(Model model) {
         model.addAttribute("title", "Курсы");
-        Iterable<Course> courses = courseRepository.findAll();
+        List<Course> courses = courseService.findAll();
         model.addAttribute("courses", courses);
+        return "courses";
+    }
+
+    @PostMapping("/courses")
+    public String searchCourse(@RequestParam String searchBy, @RequestParam String value, @RequestParam String sortBy,
+                               Model model) {
+        model.addAttribute("title", "Курсы");
+        if (!value.isEmpty()) {
+            List<Course> courses = courseService.searchCourseBy(searchBy, value);
+            model.addAttribute("courses", courses);
+        } else {
+            List<Course> allCourses = courseService.findAll();
+            List<Course> courses = courseService.sortCoursesBy(sortBy, allCourses);
+            model.addAttribute("courses", courses);
+        }
         return "courses";
     }
 
@@ -36,30 +50,26 @@ public class CourseController {
                                 @RequestParam int quantity_of_students, @RequestParam int age_of_group,
                                 @RequestParam double price, @RequestParam String description, Model model) {
         Course course = new Course(name, language, level, quantity_of_students, age_of_group, price, description);
-        courseRepository.save(course);
+        courseService.addCourse(course);
         return "redirect:/courses";
     }
 
     @GetMapping("/courses/{id}")
     public String courseInfo(@PathVariable(value = "id") int id, Model model) {
-        if(!courseRepository.existsById(id)){
+        if (!courseService.existsById(id)) {
             return "redirect:/courses";
         }
-        Optional<Course> course = courseRepository.findById(id);
-        ArrayList<Course> result = new ArrayList<>();
-        course.ifPresent(result::add);
+        List<Course> result = courseService.findById(id);
         model.addAttribute("course", result);
         return "course-info";
     }
 
     @GetMapping("/courses/{id}/edit")
     public String editCourse(@PathVariable(value = "id") int id, Model model) {
-        if(!courseRepository.existsById(id)){
+        if (!courseService.existsById(id)) {
             return "redirect:/courses";
         }
-        Optional<Course> course = courseRepository.findById(id);
-        ArrayList<Course> result = new ArrayList<>();
-        course.ifPresent(result::add);
+        List<Course> result = courseService.findById(id);
         model.addAttribute("course", result);
         return "course-edit";
     }
@@ -69,22 +79,13 @@ public class CourseController {
                                  @RequestParam String level, @RequestParam int quantity_of_students,
                                  @RequestParam int age_of_group, @RequestParam double price, @RequestParam String description,
                                  Model model) {
-        Course course = courseRepository.findById(id).orElseThrow();
-        course.setName(name);
-        course.setLanguage(language);
-        course.setLevel(level);
-        course.setQuantity_of_students(quantity_of_students);
-        course.setAge_of_group(age_of_group);
-        course.setPrice(price);
-        course.setDescription(description);
-        courseRepository.save(course);
+        courseService.editCourse(id, name, language, level, quantity_of_students, age_of_group, price, description);
         return "redirect:/courses";
     }
 
     @PostMapping("/courses/{id}/delete")
     public String deleteCoursePost(@PathVariable(value = "id") int id, Model model) {
-        Course course = courseRepository.findById(id).orElseThrow();
-        courseRepository.delete(course);
+        courseService.deleteCourse(id);
         return "redirect:/courses";
     }
 }
