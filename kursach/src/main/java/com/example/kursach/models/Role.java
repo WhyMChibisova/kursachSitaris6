@@ -3,16 +3,16 @@ package com.example.kursach.models;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idroles")
     private int id;
-
     @Transient
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;

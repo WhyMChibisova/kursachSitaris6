@@ -15,7 +15,12 @@
         <h4 th:text="${el.age}"></h4>
         <h4 th:text="${el.login}"></h4>
         <h4 th:text="${el.password}"></h4>
+        <form method="post">
+            <button type="submit" name="userId" th:value="${el.id}">Удалить</button>
+        </form>
+        <a th:href="'/admin/' + ${el.id} + '/edit'">Редактировать</a>
     </div>
+    <a th:href="'/admin/add'">Добавить преподавателя</a>
 </div>
 
 <footer th:insert="blocks/footer :: footer"></footer>

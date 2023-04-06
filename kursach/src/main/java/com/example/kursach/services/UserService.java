@@ -1,5 +1,7 @@
 package com.example.kursach.services;
 
+import com.example.kursach.models.Course;
+import com.example.kursach.models.Role;
 import com.example.kursach.models.User;
 import com.example.kursach.repositories.RoleRepository;
 import com.example.kursach.repositories.UserRepository;
@@ -44,6 +46,10 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
+    public boolean existsById(int id) {
+        return userRepository.existsById(id);
+    }
+
     public List<User> allUsers() {
         return (List<User>) userRepository.findAll();
     }
@@ -60,13 +66,29 @@ public class UserService implements UserDetailsService {
 
     public boolean deleteUser(int userId) {
         if (userRepository.findById(userId).isPresent()) {
-            userRepository.deleteById(userId);
-            return true;
+            User user = findUserById(userId);
+            for (Role role : user.getRoles()) {
+                if (role.getName().equals("ADMIN")) {
+                    return false;
+                } else {
+                    userRepository.deleteById(userId);
+                    return true;
+                }
+            }
         }
         return false;
     }
 
-    public User getAuthorized(){
+    public User getAuthorized() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    public void editUser(int id, String name, String surname, int age, String login) {
+        User user = findUserById(id);
+        user.setName(name);
+        user.setSurname(surname);
+        user.setAge(age);
+        user.setLogin(login);
+        userRepository.save(user);
     }
 }
