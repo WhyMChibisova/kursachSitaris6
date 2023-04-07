@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Подробнее</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div>
+    <h2>Учебный материал</h2>
+    <div th:each="el : ${book}">
+        <h4 th:text="${el.name}"></h4>
+        <h4 th:text="${el.author}"></h4>
+        <h4 th:text="${el.language}"></h4>
+        <h4 th:text="${el.level}"></h4>
+        <textarea th:text="${el.description}"></textarea>
+        <a th:href="'/books/' + ${el.id} + '/edit'">Редактировать</a>
+        <form th:action="'/books/' + ${el.id} + '/delete'" method="post">
+            <button th:href="'/books/' + ${el.id} + '/delete'" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

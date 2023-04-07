@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Учебные материалы</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div>
+    <h2>Учебные материалы</h2>
+    <div th:each="el : ${books}">
+        <h4 th:text="${el.name}"></h4>
+        <h4 th:text="${el.author}"></h4>
+        <h4 th:text="${el.language}"></h4>
+        <a th:href="'/books/' + ${el.id}">Подробнее</a>
+    </div>
+    <a th:href="'/books/add'">Добавить учебный материал</a>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>

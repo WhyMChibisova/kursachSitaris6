@@ -26,8 +26,8 @@ public class CourseController {
     }
 
     @PostMapping("/courses")
-    public String searchCourse(@RequestParam String searchBy, @RequestParam String value, @RequestParam String sortBy,
-                               Model model) {
+    public String searchAndSortCourse(@RequestParam String searchBy, @RequestParam String value,
+                                      @RequestParam String sortBy, Model model) {
         model.addAttribute("title", "Курсы");
         if (!value.isEmpty()) {
             List<Course> courses = courseService.searchCourseBy(searchBy, value);
