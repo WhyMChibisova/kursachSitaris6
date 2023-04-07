@@ -1,7 +1,6 @@
 package com.example.kursach.controllers;
 
 import com.example.kursach.models.Book;
-import com.example.kursach.models.Course;
 import com.example.kursach.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Подробнее</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div>
+    <h2>Мероприятие</h2>
+    <div th:each="el : ${event}">
+        <h4 th:text="${el.name}"></h4>
+        <h4 th:text="${#temporals.format(el.date, 'dd.MM.yyyy')}"></h4>
+        <h4 th:text="${el.time}"></h4>
+        <h4 th:text="${el.place}"></h4>
+        <h4 th:text="${el.language}"></h4>
+        <textarea th:text="${el.description}"></textarea>
+        <a th:href="'/events/' + ${el.id} + '/edit'">Редактировать</a>
+        <form th:action="'/events/' + ${el.id} + '/delete'" method="post">
+            <button th:href="'/events/' + ${el.id} + '/delete'" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

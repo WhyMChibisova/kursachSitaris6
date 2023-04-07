@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Учебные материалы</title>
+    <title>Мероприятия</title>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
 
 <div>
-    <h2>Учебные материалы</h2>
-    <div th:each="el : ${books}">
+    <h2>Мероприятия</h2>
+    <div th:each="el : ${events}">
         <h4 th:text="${el.name}"></h4>
-        <h4 th:text="${el.author}"></h4>
+        <h4 th:text="${#temporals.format(el.date, 'dd.MM.yyyy')}"></h4>
         <h4 th:text="${el.language}"></h4>
-        <a th:href="'/books/' + ${el.id}">Подробнее</a>
+        <a th:href="'/events/' + ${el.id}">Подробнее</a>
     </div>
-    <a th:href="'/books/add'">Добавить учебный материал</a>
+    <a th:href="'/events/add'">Добавить мероприятие</a>
 </div>
 
 <footer th:insert="blocks/footer :: footer"></footer>

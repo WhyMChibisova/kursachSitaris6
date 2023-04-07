@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div>
+    <h2>Редактирование</h2>
+    <div th:each="el : ${event}">
+        <form method="post">
+            <input type="text" name="name" th:value="${el.name}" placeholder="Введите название">
+            <input type="date" name="date" th:value="${el.date}" placeholder="Введите дату">
+            <input type="time" name="time" th:value="${el.time}" placeholder="Введите время">
+            <input type="text" name="place" th:value="${el.place}" placeholder="Введите место">
+            <input type="text" name="language" th:value="${el.language}" placeholder="Введите язык">
+            <textarea name="description" th:text="${el.description}" placeholder="Введите описание"/>
+            <button type="submit">Обновить</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
