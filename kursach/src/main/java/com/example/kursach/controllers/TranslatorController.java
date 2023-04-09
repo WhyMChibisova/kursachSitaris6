@@ -29,12 +29,12 @@ public class TranslatorController {
                     .add("target_language", to)
                     .add("text", text)
                     .build();
-
             Request request = new Request.Builder()
                     .url("https://text-translator2.p.rapidapi.com/translate")
                     .post(body)
                     .addHeader("content-type", "application/x-www-form-urlencoded")
-                    .addHeader("X-RapidAPI-Key", "71e450a987msh713f342f0636ddap1586dbjsn0f0608a48699")
+                    //секретный ключ myKey
+                    //.addHeader("X-RapidAPI-Key", myKey)
                     .addHeader("X-RapidAPI-Host", "text-translator2.p.rapidapi.com")
                     .build();
 
