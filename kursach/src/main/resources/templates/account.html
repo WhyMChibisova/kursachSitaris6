@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Аккаунт</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div>
+    <h3 th:text="${user.name}"/>
+    <h3 th:text="${user.surname}"/>
+    <h3 th:text="${user.age}"/>
+    <a href="/account/edit">Редактировать профиль</a>
+</div>
+
+<div>
+    <a href="/account/test">Пройти тест на знание английского</a>
+</div>
+
+<div>
+    <h2>Мои курсы</h2>
+    <div th:each="el : ${courses}">
+        <h4 th:text="${el.name}"></h4>
+        <h4 th:text="${el.language}"></h4>
+        <h4 th:text="${el.level}"></h4>
+        <form th:action="'/account/' + ${el.id} + '/delete'" method="post">
+            <button type="submit">Удалить мой курс</button>
+        </form>
+    </div>
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

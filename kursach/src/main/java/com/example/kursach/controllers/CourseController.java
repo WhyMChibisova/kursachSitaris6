@@ -1,8 +1,10 @@
 package com.example.kursach.controllers;
 
 import com.example.kursach.models.Course;
+import com.example.kursach.models.User;
 import com.example.kursach.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +61,7 @@ public class CourseController {
         if (!courseService.existsById(id)) {
             return "redirect:/courses";
         }
-        List<Course> result = courseService.findById(id);
+        Course result = courseService.findById(id);
         model.addAttribute("course", result);
         return "course-info";
     }
@@ -69,7 +71,7 @@ public class CourseController {
         if (!courseService.existsById(id)) {
             return "redirect:/courses";
         }
-        List<Course> result = courseService.findById(id);
+        Course result = courseService.findById(id);
         model.addAttribute("course", result);
         return "course-edit";
     }
@@ -86,6 +88,13 @@ public class CourseController {
     @PostMapping("/courses/{id}/delete")
     public String deleteCoursePost(@PathVariable(value = "id") int id, Model model) {
         courseService.deleteCourse(id);
+        return "redirect:/courses";
+    }
+
+    @PostMapping("/courses/{id}/buy")
+    public String buyCourse(@AuthenticationPrincipal User user, @PathVariable(value = "id") int id, Model model) {
+        model.addAttribute("title", "Курсы");
+        courseService.buyCourse(user.getId(), id);
         return "redirect:/courses";
     }
 }

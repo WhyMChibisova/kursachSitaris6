@@ -8,7 +8,7 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div>
-    <h2>Курсы</h2>
+    <h2>Курс</h2>
     <div th:each="el : ${course}">
         <h4 th:text="${el.name}"></h4>
         <h4 th:text="${el.language}"></h4>
@@ -20,6 +20,9 @@
         <a th:href="'/courses/' + ${el.id} + '/edit'">Редактировать</a>
         <form th:action="'/courses/' + ${el.id} + '/delete'" method="post">
             <button th:href="'/courses/' + ${el.id} + '/delete'" type="submit">Удалить</button>
+        </form>
+        <form th:action="'/courses/' + ${el.id} + '/buy'" method="post">
+            <button type="submit">Купить курс</button>
         </form>
     </div>
 </div>

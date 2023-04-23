@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Аккаунт</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div>
+    <h1>Редактирование профиля</h1>
+    <form method="post">
+        <input type="text" th:value="${user.name}" name="name" placeholder="Введите имя"><br>
+        <input type="text" th:value="${user.surname}" name="surname" placeholder="Введите фамилию"><br>
+        <input type="number" th:value="${user.age}" name="age" placeholder="Введите возраст"><br>
+        <input type="text" th:value="${user.login}" name="login" placeholder="Введите логин"><br>
+        <button type="submit">Обновить</button>
+    </form>
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

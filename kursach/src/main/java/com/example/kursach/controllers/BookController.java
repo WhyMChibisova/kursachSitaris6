@@ -1,6 +1,7 @@
 package com.example.kursach.controllers;
 
 import com.example.kursach.models.Book;
+import com.example.kursach.models.Course;
 import com.example.kursach.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,20 @@ public class BookController {
     public String allBooks(Model model) {
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
+        return "books";
+    }
+
+    @PostMapping("/books")
+    public String searchAndSortBooks(@RequestParam String searchBy, @RequestParam String value,
+                                      @RequestParam String sortBy, Model model) {
+        if (!value.isEmpty()) {
+            List<Book> books = bookService.searchBookBy(searchBy, value);
+            model.addAttribute("books", books);
+        } else {
+            List<Book> allBooks = bookService.findAll();
+            List<Book> books = bookService.sortBookBy(sortBy, allBooks);
+            model.addAttribute("books", books);
+        }
         return "books";
     }
 

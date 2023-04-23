@@ -1,16 +1,12 @@
 package com.example.kursach.services;
 
-import com.example.kursach.models.Course;
 import com.example.kursach.models.Role;
 import com.example.kursach.models.User;
 import com.example.kursach.repositories.RoleRepository;
 import com.example.kursach.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.apache.tomcat.util.descriptor.web.ContextHandler;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class UserService implements UserDetailsService {
     @PersistenceContext

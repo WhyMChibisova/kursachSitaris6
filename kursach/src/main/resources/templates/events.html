@@ -8,6 +8,22 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div>
+    <form method="post">
+        <select name="searchBy">
+            <option>По названию</option>
+            <option>По языку</option>
+        </select>
+        <input type="text" name="value" placeholder="Введите значение поиска">
+        <p>Сортировка</p>
+        <select name="sortBy">
+            <option>По названию</option>
+            <option>По дате</option>
+        </select>
+        <button type="submit">Сортировать</button>
+    </form>
+</div>
+
+<div>
     <h2>Мероприятия</h2>
     <div th:each="el : ${events}">
         <h4 th:text="${el.name}"></h4>

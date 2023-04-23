@@ -1,9 +1,11 @@
 package com.example.kursach.models;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 @Entity
 @Table(name = "courses")
+@Builder
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +20,17 @@ public class Course {
     private String description;
 
     public Course() {
+    }
+
+    public Course(int id, String name, String language, String level, int quantity_of_students, int age_of_group, double price, String description) {
+        this.id = id;
+        this.name = name;
+        this.language = language;
+        this.level = level;
+        this.quantity_of_students = quantity_of_students;
+        this.age_of_group = age_of_group;
+        this.price = price;
+        this.description = description;
     }
 
     public Course(String name, String language, String level, int quantity_of_students, int age_of_group, double price, String description) {

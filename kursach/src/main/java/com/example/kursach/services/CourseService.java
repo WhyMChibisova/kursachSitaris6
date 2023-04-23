@@ -1,7 +1,9 @@
 package com.example.kursach.services;
 
 import com.example.kursach.models.Course;
+import com.example.kursach.models.UsersCourse;
 import com.example.kursach.repositories.CourseRepository;
+import com.example.kursach.repositories.UsersCourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ import java.util.*;
 public class CourseService {
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    UsersCourseRepository usersCourseRepository;
 
     public List<Course> searchCourseBy(String searchBy, String value) {
         Iterable<Course> courses = courseRepository.findAll();
@@ -63,11 +68,11 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public List<Course> findById(int id) {
+    public Course findById(int id) {
         Optional<Course> course = courseRepository.findById(id);
         ArrayList<Course> result = new ArrayList<>();
         course.ifPresent(result::add);
-        return result;
+        return result.get(0);
     }
 
     public void editCourse(int id, String name, String language, String level, int quantity_of_students, int age_of_group,
@@ -94,5 +99,27 @@ public class CourseService {
 
     public void addCourse(Course course) {
         courseRepository.save(course);
+    }
+
+    public void buyCourse(int userId, int courseId) {
+        if (!usersCourseRepository.existsByCourseIdAndUserId(courseId, userId)) {
+            usersCourseRepository.save(new UsersCourse(userId, courseId));
+        }
+    }
+
+    public List<Course> findAllUserCourses(int userId) {
+        List<UsersCourse> usersCourses = usersCourseRepository.findByUserId(userId);
+        List<Course> courses = new ArrayList<>();
+        for (UsersCourse usersCourse : usersCourses) {
+            courses.add(findById(usersCourse.getCourseId()));
+        }
+        return courses;
+    }
+
+    public void deleteUserCourse(int courseId, int userId) {
+        if (usersCourseRepository.existsByCourseIdAndUserId(courseId, userId)) {
+            UsersCourse usersCourse = usersCourseRepository.findByUserIdAndCourseId(userId, courseId);
+            usersCourseRepository.delete(usersCourse);
+        }
     }
 }

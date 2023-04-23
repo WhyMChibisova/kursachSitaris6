@@ -1,5 +1,6 @@
 package com.example.kursach.controllers;
 
+import com.example.kursach.models.Book;
 import com.example.kursach.models.Event;
 import com.example.kursach.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,20 @@ public class EventController {
     public String allEvents(Model model) {
         List<Event> events = eventService.findAll();
         model.addAttribute("events", events);
+        return "events";
+    }
+
+    @PostMapping("/events")
+    public String searchAndSortEvents(@RequestParam String searchBy, @RequestParam String value,
+                                     @RequestParam String sortBy, Model model) {
+        if (!value.isEmpty()) {
+            List<Event> events = eventService.searchEventBy(searchBy, value);
+            model.addAttribute("events", events);
+        } else {
+            List<Event> allEvents = eventService.findAll();
+            List<Event> events = eventService.sortEventBy(sortBy, allEvents);
+            model.addAttribute("events", events);
+        }
         return "events";
     }
 

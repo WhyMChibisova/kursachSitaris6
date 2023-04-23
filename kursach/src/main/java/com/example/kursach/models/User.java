@@ -1,6 +1,7 @@
 package com.example.kursach.models;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Builder
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,16 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     public User() {
+    }
+
+    public User(int id, String name, String surname, int age, String login, String password, Set<Role> roles) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
     }
 
     public User(String name, String surname, int age, String login, String password) {

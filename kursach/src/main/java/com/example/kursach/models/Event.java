@@ -1,12 +1,14 @@
 package com.example.kursach.models;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "events")
+@Builder
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +22,16 @@ public class Event {
     private String description;
 
     public Event() {
+    }
+
+    public Event(int id, String name, LocalDate date, LocalTime time, String place, String language, String description) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.place = place;
+        this.language = language;
+        this.description = description;
     }
 
     public Event(String name, LocalDate date, LocalTime time, String place, String language, String description) {

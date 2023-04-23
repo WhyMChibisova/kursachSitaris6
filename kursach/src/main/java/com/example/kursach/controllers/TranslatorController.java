@@ -34,7 +34,7 @@ public class TranslatorController {
                     .post(body)
                     .addHeader("content-type", "application/x-www-form-urlencoded")
                     //секретный ключ myKey
-                    //.addHeader("X-RapidAPI-Key", myKey)
+                    //.addHeader("X-RapidAPI-Key", "")
                     .addHeader("X-RapidAPI-Host", "text-translator2.p.rapidapi.com")
                     .build();
 

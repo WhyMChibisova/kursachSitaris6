@@ -1,6 +1,5 @@
 package com.example.kursach.controllers;
 
-import com.example.kursach.models.Course;
 import com.example.kursach.models.Role;
 import com.example.kursach.models.User;
 import com.example.kursach.services.UserService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
-import java.util.List;
 
 @Controller
 public class AdminController {

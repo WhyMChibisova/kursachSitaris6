@@ -1,13 +1,14 @@
 package com.example.kursach.models;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
+@Builder
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,12 @@ public class Role implements GrantedAuthority {
     private String name;
 
     public Role() {
+    }
+
+    public Role(int id, Set<User> users, String name) {
+        this.id = id;
+        this.users = users;
+        this.name = name;
     }
 
     public Role(int id, String name) {
