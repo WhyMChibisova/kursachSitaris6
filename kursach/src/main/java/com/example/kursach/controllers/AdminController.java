@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.util.Collections;
 
 @Controller
@@ -59,8 +60,8 @@ public class AdminController {
 
     @PostMapping("/admin/{id}/edit")
     public String editUserPost(@PathVariable(value = "id") int id, @RequestParam String name, @RequestParam String surname,
-                               @RequestParam int age, @RequestParam String login, Model model) {
-        userService.editUser(id, name, surname, age, login);
+                               @RequestParam int age, @RequestParam String login, Model model) throws IOException {
+        userService.editUser(id, name, surname, age, login, null);
         return "redirect:/admin";
     }
 }

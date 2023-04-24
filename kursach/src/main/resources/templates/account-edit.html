@@ -8,11 +8,13 @@
 <header th:insert="blocks/header :: header"></header>
 <div>
     <h1>Редактирование профиля</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" th:value="${user.filename}" name="file"><br>
         <input type="text" th:value="${user.name}" name="name" placeholder="Введите имя"><br>
         <input type="text" th:value="${user.surname}" name="surname" placeholder="Введите фамилию"><br>
         <input type="number" th:value="${user.age}" name="age" placeholder="Введите возраст"><br>
         <input type="text" th:value="${user.login}" name="login" placeholder="Введите логин"><br>
+        <a href="/account/edit/password">Смена пароля</a>
         <button type="submit">Обновить</button>
     </form>
 </div>

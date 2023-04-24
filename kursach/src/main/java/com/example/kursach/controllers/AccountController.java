@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,10 +43,25 @@ public class AccountController {
     }
 
     @PostMapping("/account/edit")
-    public String accountEditPost(@AuthenticationPrincipal User user, @RequestParam String name, @RequestParam String surname,@RequestParam int age,
-                                  @RequestParam String login, Model model) {
-        userService.editUser(user.getId(), name, surname, age, login);
+    public String accountEditPost(@AuthenticationPrincipal User user, @RequestParam String name, @RequestParam String surname,
+                                  @RequestParam int age, @RequestParam String login,
+                                  @RequestParam(value = "file") MultipartFile file, Model model) throws IOException {
+        userService.editUser(user.getId(), name, surname, age, login, file);
         return "redirect:/account";
+    }
+
+    @GetMapping("/account/edit/password")
+    public String accountEditPassword(Model model) {
+        return "account-edit-password";
+    }
+
+    @PostMapping("/account/edit/password")
+    public String accountEditPasswordPost(@AuthenticationPrincipal User user, @RequestParam String lastPassword,
+                                          @RequestParam String newPassword1, @RequestParam String newPassword2, Model model) {
+        if(userService.editPassword(user.getId(), lastPassword, newPassword1, newPassword2)){
+            return "redirect:/account";
+        } else
+            return "account-edit-password";
     }
 
     @PostMapping("/account/{id}/delete")

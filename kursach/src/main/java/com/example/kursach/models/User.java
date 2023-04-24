@@ -21,6 +21,7 @@ public class User implements UserDetails {
     private int age;
     private String login;
     private String password;
+    private String filename;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
@@ -28,13 +29,14 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(int id, String name, String surname, int age, String login, String password, Set<Role> roles) {
+    public User(int id, String name, String surname, int age, String login, String password, String filename, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.login = login;
         this.password = password;
+        this.filename = filename;
         this.roles = roles;
     }
 
@@ -84,6 +86,14 @@ public class User implements UserDetails {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     @Override
