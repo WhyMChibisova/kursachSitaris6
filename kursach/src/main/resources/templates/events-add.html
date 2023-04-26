@@ -3,12 +3,15 @@
 <head>
     <title>Добавление мероприятий</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/header_style.css" th:href="@{/css/header_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/footer_style.css" th:href="@{/css/footer_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/course_style.css" th:href="@{/css/course_style.css}"/>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
 
-<div>
-    <h2>Добавление</h2>
+<div class="course-info">
+    <h2>Добавление мероприятия</h2>
     <form method="post">
         <input type="text" name="name" placeholder="Введите название">
         <input type="date" name="date" placeholder="Введите дату">

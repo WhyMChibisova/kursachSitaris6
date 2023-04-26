@@ -4,32 +4,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Тест</title>
     <script type="text/javascript" src="../static/js/data.js"></script>
-    <style>
-        p, span, input {
-            font-size: 20px;
-        }
-
-        button {
-            font-size: 16px;
-        }
-
-        #vo {
-            color: green;
-        }
-
-        #nvo {
-            color: red;
-        }
-
-        #ot {
-            color: blue;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="../static/css/header_style.css" th:href="@{/css/header_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/footer_style.css" th:href="@{/css/footer_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/test_style.css" th:href="@{/css/test_style.css}"/>
 </head>
-<body style="background-color:#d9ffd6;">
+<body>
 <header th:insert="blocks/header :: header"></header>
-<div style="margin-left: auto;margin-right: auto;width: 600px;text-align:center;">
-    <p>Тест. Тема - "<span id="title"></span>".</p>
+<div class="test">
+    <p>Тема - "<span id="title"></span>".</p>
     <div id="question1" style="display:block;">
         <p>Вопрос 1</p>
         <p><span id="q_1"></span><br><br>
@@ -37,7 +19,7 @@
             2. <span id="option1_2"></span><br>
             3. <span id="option1_3"></span><br>
             4. <span id="option1_4"></span><br><br>
-            <input type="number" id="input_1">
+            <input type="number" min="1" max="4" id="input_1">
         </p>
     </div>
     <div id="question2" style="display:none;">
@@ -47,7 +29,7 @@
             2. <span id="option2_2"></span><br>
             3. <span id="option2_3"></span><br>
             4. <span id="option2_4"></span><br><br>
-            <input type="number" id="input_2">
+            <input type="number" min="1" max="4" id="input_2">
         </p>
     </div>
     <div id="question3" style="display:none;">
@@ -57,7 +39,7 @@
             2. <span id="option3_2"></span><br>
             3. <span id="option3_3"></span><br>
             4. <span id="option3_4"></span><br><br>
-            <input type="number" id="input_3">
+            <input type="number" min="1" max="4" id="input_3">
         </p>
     </div>
     <div id="question4" style="display:none;">
@@ -67,7 +49,7 @@
             2. <span id="option4_2"></span><br>
             3. <span id="option4_3"></span><br>
             4. <span id="option4_4"></span><br><br>
-            <input type="number" id="input_4">
+            <input type="number" min="1" max="4" id="input_4">
         </p>
     </div>
     <div id="question5" style="display:none;">
@@ -77,7 +59,7 @@
             2. <span id="option5_2"></span><br>
             3. <span id="option5_3"></span><br>
             4. <span id="option5_4"></span><br><br>
-            <input type="number" id="input_5">
+            <input type="number" min="1" max="4" id="input_5">
         </p>
     </div>
     <div id="question6" style="display:none;">
@@ -87,7 +69,7 @@
             2. <span id="option6_2"></span><br>
             3. <span id="option6_3"></span><br>
             4. <span id="option6_4"></span><br><br>
-            <input type="number" id="input_6">
+            <input type="number" min="1" max="4" id="input_6">
         </p>
     </div>
     <div id="question7" style="display:none;">
@@ -97,7 +79,7 @@
             2. <span id="option7_2"></span><br>
             3. <span id="option7_3"></span><br>
             4. <span id="option7_4"></span><br><br>
-            <input type="number" id="input_7">
+            <input type="number" min="1" max="4" id="input_7">
         </p>
     </div>
     <div id="question8" style="display:none;">
@@ -107,7 +89,7 @@
             2. <span id="option8_2"></span><br>
             3. <span id="option8_3"></span><br>
             4. <span id="option8_4"></span><br><br>
-            <input type="number" id="input_8">
+            <input type="number" min="1" max="4" id="input_8">
         </p>
     </div>
     <div id="question9" style="display:none;">
@@ -117,7 +99,7 @@
             2. <span id="option9_2"></span><br>
             3. <span id="option9_3"></span><br>
             4. <span id="option9_4"></span><br><br>
-            <input type="number" id="input_9">
+            <input type="number" min="1" max="4" id="input_9">
         </p>
     </div>
     <div id="question10" style="display:none;">
@@ -127,7 +109,7 @@
             2. <span id="option10_2"></span><br>
             3. <span id="option10_3"></span><br>
             4. <span id="option10_4"></span><br><br>
-            <input type="number" id="input_10">
+            <input type="number" min="1" max="4" id="input_10">
         </p>
     </div>
     <div id="question11" style="display:none;">
@@ -137,7 +119,7 @@
             2. <span id="option11_2"></span><br>
             3. <span id="option11_3"></span><br>
             4. <span id="option11_4"></span><br><br>
-            <input type="number" id="input_11">
+            <input type="number" min="1" max="4" id="input_11">
         </p>
     </div>
     <div id="question12" style="display:none;">
@@ -147,7 +129,7 @@
             2. <span id="option12_2"></span><br>
             3. <span id="option12_3"></span><br>
             4. <span id="option12_4"></span><br><br>
-            <input type="number" id="input_12">
+            <input type="number" min="1" max="4" id="input_12">
         </p>
     </div>
     <div id="question13" style="display:none;">
@@ -157,7 +139,7 @@
             2. <span id="option13_2"></span><br>
             3. <span id="option13_3"></span><br>
             4. <span id="option13_4"></span><br><br>
-            <input type="number" id="input_13">
+            <input type="number" min="1" max="4" id="input_13">
         </p>
     </div>
     <div id="question14" style="display:none;">
@@ -167,7 +149,7 @@
             2. <span id="option14_2"></span><br>
             3. <span id="option14_3"></span><br>
             4. <span id="option14_4"></span><br><br>
-            <input type="number" id="input_14">
+            <input type="number" min="1" max="4" id="input_14">
         </p>
     </div>
     <div id="question15" style="display:none;">
@@ -177,7 +159,7 @@
             2. <span id="option15_2"></span><br>
             3. <span id="option15_3"></span><br>
             4. <span id="option15_4"></span><br><br>
-            <input type="number" id="input_15">
+            <input type="number" min="1" max="4" id="input_15">
         </p>
     </div>
     <div id="question16" style="display:none;">
@@ -187,7 +169,7 @@
             2. <span id="option16_2"></span><br>
             3. <span id="option16_3"></span><br>
             4. <span id="option16_4"></span><br><br>
-            <input type="number" id="input_16">
+            <input type="number" min="1" max="4" id="input_16">
         </p>
     </div>
     <div id="question17" style="display:none;">
@@ -197,7 +179,7 @@
             2. <span id="option17_2"></span><br>
             3. <span id="option17_3"></span><br>
             4. <span id="option17_4"></span><br><br>
-            <input type="number" id="input_17">
+            <input type="number" min="1" max="4" id="input_17">
         </p>
     </div>
     <div id="question18" style="display:none;">
@@ -207,7 +189,7 @@
             2. <span id="option18_2"></span><br>
             3. <span id="option18_3"></span><br>
             4. <span id="option18_4"></span><br><br>
-            <input type="number" id="input_18">
+            <input type="number" min="1" max="4" id="input_18">
         </p>
     </div>
     <div id="question19" style="display:none;">
@@ -217,7 +199,7 @@
             2. <span id="option19_2"></span><br>
             3. <span id="option19_3"></span><br>
             4. <span id="option19_4"></span><br><br>
-            <input type="number" id="input_19">
+            <input type="number" min="1" max="4" id="input_19">
         </p>
     </div>
     <div id="question20" style="display:none;">
@@ -227,7 +209,7 @@
             2. <span id="option20_2"></span><br>
             3. <span id="option20_3"></span><br>
             4. <span id="option20_4"></span><br><br>
-            <input type="number" id="input_20">
+            <input type="number" min="1" max="4" id="input_20">
         </p>
     </div>
     <div id="question21" style="display:none;">
@@ -237,7 +219,7 @@
             2. <span id="option21_2"></span><br>
             3. <span id="option21_3"></span><br>
             4. <span id="option21_4"></span><br><br>
-            <input type="number" id="input_21">
+            <input type="number" min="1" max="4" id="input_21">
         </p>
     </div>
     <div id="question22" style="display:none;">
@@ -247,7 +229,7 @@
             2. <span id="option22_2"></span><br>
             3. <span id="option22_3"></span><br>
             4. <span id="option22_4"></span><br><br>
-            <input type="number" id="input_22">
+            <input type="number" min="1" max="4" id="input_22">
         </p>
     </div>
     <div id="question23" style="display:none;">
@@ -257,7 +239,7 @@
             2. <span id="option23_2"></span><br>
             3. <span id="option23_3"></span><br>
             4. <span id="option23_4"></span><br><br>
-            <input type="number" id="input_23">
+            <input type="number" min="1" max="4" id="input_23">
         </p>
     </div>
     <div id="question24" style="display:none;">
@@ -267,7 +249,7 @@
             2. <span id="option24_2"></span><br>
             3. <span id="option24_3"></span><br>
             4. <span id="option24_4"></span><br><br>
-            <input type="number" id="input_24">
+            <input type="number"min="1" max="4" id="input_24">
         </p>
     </div>
     <div id="question25" style="display:none;">
@@ -277,7 +259,7 @@
             2. <span id="option25_2"></span><br>
             3. <span id="option25_3"></span><br>
             4. <span id="option25_4"></span><br><br>
-            <input type="number" id="input_25">
+            <input type="number" min="1" max="4" id="input_25">
         </p>
     </div>
     <div id="question26" style="display:none;">
@@ -287,7 +269,7 @@
             2. <span id="option26_2"></span><br>
             3. <span id="option26_3"></span><br>
             4. <span id="option26_4"></span><br><br>
-            <input type="number" id="input_26">
+            <input type="number" min="1" max="4" id="input_26">
         </p>
     </div>
     <div id="question27" style="display:none;">
@@ -297,7 +279,7 @@
             2. <span id="option27_2"></span><br>
             3. <span id="option27_3"></span><br>
             4. <span id="option27_4"></span><br><br>
-            <input type="number" id="input_27">
+            <input type="number" min="1" max="4" id="input_27">
         </p>
     </div>
     <div id="question28" style="display:none;">
@@ -307,7 +289,7 @@
             2. <span id="option28_2"></span><br>
             3. <span id="option28_3"></span><br>
             4. <span id="option28_4"></span><br><br>
-            <input type="number" id="input_28">
+            <input type="number" min="1" max="4" id="input_28">
         </p>
     </div>
     <div id="question29" style="display:none;">
@@ -317,7 +299,7 @@
             2. <span id="option29_2"></span><br>
             3. <span id="option29_3"></span><br>
             4. <span id="option29_4"></span><br><br>
-            <input type="number" id="input_29">
+            <input type="number" min="1" max="4" id="input_29">
         </p>
     </div>
     <div id="question30" style="display:none;">
@@ -327,7 +309,7 @@
             2. <span id="option30_2"></span><br>
             3. <span id="option30_3"></span><br>
             4. <span id="option30_4"></span><br><br>
-            <input type="number" id="input_30">
+            <input type="number" min="1" max="4" id="input_30">
         </p>
     </div>
     <div id="question31" style="display:none;">
@@ -337,7 +319,7 @@
             2. <span id="option31_2"></span><br>
             3. <span id="option31_3"></span><br>
             4. <span id="option31_4"></span><br><br>
-            <input type="number" id="input_31">
+            <input type="number" min="1" max="4" id="input_31">
         </p>
     </div>
     <div id="question32" style="display:none;">
@@ -347,7 +329,7 @@
             2. <span id="option32_2"></span><br>
             3. <span id="option32_3"></span><br>
             4. <span id="option32_4"></span><br><br>
-            <input type="number" id="input_32">
+            <input type="number" min="1" max="4" id="input_32">
         </p>
     </div>
     <div id="question33" style="display:none;">
@@ -357,7 +339,7 @@
             2. <span id="option33_2"></span><br>
             3. <span id="option33_3"></span><br>
             4. <span id="option33_4"></span><br><br>
-            <input type="number" id="input_33">
+            <input type="number" min="1" max="4" id="input_33">
         </p>
     </div>
     <div id="question34" style="display:none;">
@@ -367,7 +349,7 @@
             2. <span id="option34_2"></span><br>
             3. <span id="option34_3"></span><br>
             4. <span id="option34_4"></span><br><br>
-            <input type="number" id="input_34">
+            <input type="number" min="1" max="4" id="input_34">
         </p>
     </div>
     <div id="question35" style="display:none;">
@@ -377,7 +359,7 @@
             2. <span id="option35_2"></span><br>
             3. <span id="option35_3"></span><br>
             4. <span id="option35_4"></span><br><br>
-            <input type="number" id="input_35">
+            <input type="number" min="1" max="4" id="input_35">
         </p>
     </div>
     <div id="question36" style="display:none;">
@@ -387,7 +369,7 @@
             2. <span id="option36_2"></span><br>
             3. <span id="option36_3"></span><br>
             4. <span id="option36_4"></span><br><br>
-            <input type="number" id="input_36">
+            <input type="number" min="1" max="4" id="input_36">
         </p>
     </div>
     <div id="question37" style="display:none;">
@@ -397,7 +379,7 @@
             2. <span id="option37_2"></span><br>
             3. <span id="option37_3"></span><br>
             4. <span id="option37_4"></span><br><br>
-            <input type="number" id="input_37">
+            <input type="number" min="1" max="4" id="input_37">
         </p>
     </div>
     <div id="question38" style="display:none;">
@@ -407,7 +389,7 @@
             2. <span id="option38_2"></span><br>
             3. <span id="option38_3"></span><br>
             4. <span id="option38_4"></span><br><br>
-            <input type="number" id="input_38">
+            <input type="number" min="1" max="4" id="input_38">
         </p>
     </div>
     <div id="question39" style="display:none;">
@@ -417,7 +399,7 @@
             2. <span id="option39_2"></span><br>
             3. <span id="option39_3"></span><br>
             4. <span id="option39_4"></span><br><br>
-            <input type="number" id="input_39">
+            <input type="number" min="1" max="4" id="input_39">
         </p>
     </div>
     <div id="question40" style="display:none;">
@@ -427,7 +409,7 @@
             2. <span id="option40_2"></span><br>
             3. <span id="option40_3"></span><br>
             4. <span id="option40_4"></span><br><br>
-            <input type="number" id="input_40">
+            <input type="number" min="1" max="4" id="input_40">
         </p>
     </div>
     <button id="button_next" onclick="next_question();">Следующий вопрос</button>

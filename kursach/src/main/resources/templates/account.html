@@ -3,27 +3,28 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Аккаунт</title>
+    <link type="text/css" rel="stylesheet" href="../static/css/header_style.css" th:href="@{/css/header_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/footer_style.css" th:href="@{/css/footer_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/course_style.css" th:href="@{/css/course_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/account_style.css" th:href="@{/css/account_style.css}"/>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-<div>
-    <img th:src="'/uploads/' + ${user.filename}">
-    <h3 th:text="${user.name}"/>
-    <h3 th:text="${user.surname}"/>
-    <h3 th:text="${user.age}"/>
-    <a href="/account/edit">Редактировать профиль</a>
-</div>
-
-<div>
+<div class="account">
+    <img class="account-photo" th:src="'/uploads/' + ${user.filename}">
+    <h1 class="account-title" th:text="${user.name + ' ' + user.surname}"/>
+    <p><b>Возраст: </b><span th:text="${user.age}"></span></p>
+    <p><b>Логин: </b><span th:text="${user.login}"></span></p>
+    <a href="/account/edit">Редактировать профиль</a><br>
     <a href="/account/test">Пройти тест на знание английского</a>
 </div>
 
-<div>
-    <h2>Мои курсы</h2>
-    <div th:each="el : ${courses}">
-        <h4 th:text="${el.name}"></h4>
-        <h4 th:text="${el.language}"></h4>
-        <h4 th:text="${el.level}"></h4>
+<h1>Мои курсы</h1>
+<div class="container-course">
+    <div th:each="el : ${courses}" class="course">
+        <p><b>Название курса: </b><span th:text="${el.name}"></span></p>
+        <p><b>Язык изучения: </b><span th:text="${el.language}"></span></p>
+        <p><b>Уровень: </b><span th:text="${el.level}"></span></p>
         <form th:action="'/account/' + ${el.id} + '/delete'" method="post">
             <button type="submit">Удалить мой курс</button>
         </form>

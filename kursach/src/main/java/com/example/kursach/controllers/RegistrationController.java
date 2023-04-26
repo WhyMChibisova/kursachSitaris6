@@ -28,10 +28,9 @@ public class RegistrationController {
         User user = new User(name, surname, age, login, password);
         user.setRoles(Collections.singleton(new Role(1, "USER")));
         if (!userService.saveUser(user)){
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
-            return "registration";
+            model.addAttribute("usernameError", true);
+            return "/registration";
         }
-
         return "redirect:/";
     }
 }

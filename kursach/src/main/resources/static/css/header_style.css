@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+}
+
+.logout {
+    position: absolute;
+    right: 10px;
+}
+
+.header {
+    width: 100%;
+    background: #27263D;
+    padding: 10px 0 10px 0;
+    font-size: 16px;
+    color: #DCDCDC;
+}
+
+.header a {
+    color: #DCDCDC;
+    padding-left: 15px;
+    text-decoration: none;
+}
+
+.header a:hover {
+    color: #ffffff;
+}

@@ -3,19 +3,21 @@
 <head>
     <title>Подробнее</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/header_style.css" th:href="@{/css/header_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/footer_style.css" th:href="@{/css/footer_style.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/course_style.css" th:href="@{/css/course_style.css}"/>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
 
-<div>
-    <h2>Мероприятие</h2>
+<div class="course-info">
     <div th:each="el : ${event}">
-        <h4 th:text="${el.name}"></h4>
-        <h4 th:text="${#temporals.format(el.date, 'dd.MM.yyyy')}"></h4>
-        <h4 th:text="${el.time}"></h4>
-        <h4 th:text="${el.place}"></h4>
-        <h4 th:text="${el.language}"></h4>
-        <textarea th:text="${el.description}"></textarea>
+        <p><b>Название мероприятия: </b><span th:text="${el.name}"></span></p>
+        <p><b>Дата проведения: </b><span th:text="${#temporals.format(el.date, 'dd.MM.yyyy')}"></span></p>
+        <p><b>Время проведения: </b><span th:text="${el.time}"></span></p>
+        <p><b>Место проведения: </b><span th:text="${el.place}"></span></p>
+        <p><b>Язык: </b><span th:text="${el.language}"></span></p>
+        <b>Описание: </b><textarea th:text="${el.description}" disabled></textarea>
         <a th:href="'/events/' + ${el.id} + '/edit'">Редактировать</a>
         <form th:action="'/events/' + ${el.id} + '/delete'" method="post">
             <button th:href="'/events/' + ${el.id} + '/delete'" type="submit">Удалить</button>
